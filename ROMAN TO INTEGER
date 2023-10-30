@@ -1,0 +1,41 @@
+// Enter a Roman Number as input and convert it to an integer. (ex IX = 9)  
+
+
+public class Roman_To_Integer {
+    public static int roman_To_Int(String s) {
+
+        int[] values = new int[26];
+        values['I' - 'A'] = 1;
+        values['V' - 'A'] = 5;
+        values['X' - 'A'] = 10;
+        values['L' - 'A'] = 50;
+        values['C' - 'A'] = 100;
+        values['D' - 'A'] = 500;
+        values['M' - 'A'] = 1000;
+
+        int result = 0;
+        int prev_Value = 0;
+
+            for (int i = s.length() - 1; i >= 0; i--) {
+            char current_Char = s.charAt(i);
+            int current_Value = values[current_Char - 'A'];
+
+
+            if (current_Value < prev_Value) {
+                result -= current_Value;
+            } else {
+                result += current_Value;
+            }
+
+            prev_Value = current_Value;
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String roman_Numeral = "IX"; 
+        int integer_Equivalent = roman_To_Int(roman_Numeral);
+        System.out.println("Roman numeral " + roman_Numeral + " is equivalent to " + integer_Equivalent);
+    }
+}
